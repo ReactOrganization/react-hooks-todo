@@ -1,28 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { domainToASCII } from "url";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+const Todo = ({ todo, index }) => {
+  return <div className="todo">{todo.text}</div>;
+};
+
+const App = () => {
+  const [todos, setTodos] = useState([
+    {
+      text: "Leart React",
+      inCompleted: false
+    },
+    {
+      text: "Meet friends for lunch",
+      inCompleted: false
+    },
+    {
+      text: "Build cool to do app",
+      inCompleted: false
+    }
+  ]);
+
+  return (
+    <div className="app">
+      <div className="todo-list">
+        {todos.map((todo, index) => (
+          <Todo key={index} index={index} todo={todo} />
+        ))}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;
